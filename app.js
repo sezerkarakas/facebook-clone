@@ -1,13 +1,24 @@
-let express = require("express");
-let app = express();
-let bodyParser = require("body-parser");
-let mongoose = require("mongoose");
-let imgSchema = require("./model");
-let fs = require("fs");
-let path = require("path");
-
-app.set("view engine", "ejs");
+const express = require("express");
+const app = express();
+const { Server } = require("socket.io");
+const bodyParser = require("body-parser");
+const fs = require("fs");
+const path = require("path");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 require("dotenv").config();
+const userRoutes = require("./routes/userRoutes");
+const mongoose = require("mongoose");
+const Image = require("./model/model");
+const Message = require("./model/message");
+const methodOverride = require("method-override")
+const cache = require("memory-cache")
+const User = require("./model/userModel")
+//template
+app.set("view engine", "ejs");
+
+//global variable
+global.userIN = null;
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -16,52 +27,77 @@ mongoose
     console.log(err);
   });
 
+//middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-let multer = require("multer");
-
-let storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.fieldname + " - " + Date.now());
-  },
+app.use(express.static(__dirname + "/views/"));
+const sessionMiddleware = session({
+  secret: "my_keyboard_cat", // Buradaki texti değiştireceğiz.
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
 });
-
-let upload = multer({ storage: storage });
-
-app.get("/", (req, res) => {
-  imgSchema.find({}).then((data, err) => {
-    if (err){console.log(err)};
-    res.render("imagepage", { items: data });
-  });
+app.use(sessionMiddleware);
+app.use("*", (req, res, next) => {
+  userIN = req.session.userID;
+  next();
 });
-
-app.post("/", upload.single("image"), (req, res, next) => {
-  let obj = {
-    name: req.body.name,
-    desc: req.body.desc,
-    img: {
-      data: fs.readFileSync(
-        path.join(__dirname + "/uploads/" + req.file.filename)
-      ),
-      contentType: "image/png"
-    },
-  };
-
-  imgSchema.create(obj).then((err, item) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.redirect("/");
-    }
-  });
-});
-
+app.use(methodOverride("_method", {
+  methods: ["POST", "GET"]
+}))
 let port = process.env.PORT || "3000";
-app.listen(port, (err) => {
+
+const server = app.listen(port, (err) => {
   if (err) throw err;
   console.log(`Server listening on port ${port}`);
 });
+const io = new Server(server);
+
+const wrap = (middleware) => (socket, next) =>
+  middleware(socket.request, {}, next);
+io.use(wrap(sessionMiddleware));
+
+// only allow authenticated users
+io.use((socket, next) => {
+  sessionMiddleware(socket.request, socket.request.res, next);
+});
+
+const users = {}; // Kullanıcıları saklamak için nesne
+io.on("connection", (socket) => {
+  const connection = async (req, res) => {
+    console.log("connection code: ", socket.request.session.userID)
+    try {
+      const user = await User.findById(socket.request.session.userID)
+      const userName = user.name
+      users[socket.id] = userName
+      return users
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  socket.on("new-user", async name => {
+    let userArray = await connection();
+    socket.broadcast.emit("user-connected", userArray)
+    console.log("users", userArray)
+  })
+
+  socket.emit("chat-message", "hello world")
+  socket.on("send-chat-message", (message, room) => {
+    if (room == "") {
+      socket.broadcast.emit("chat-message", message)
+    } else {
+      socket.to(room).emit("chat-message", message)
+
+    }
+  })
+
+  socket.on("join-room", (room, cb) => {
+    socket.join(room)
+    cb(`Joined ${room}`)
+  })
+
+});
+
+app.use("/", userRoutes);

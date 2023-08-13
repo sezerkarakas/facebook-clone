@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+.myContainer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 25%;
+}
+.myInput{
+    height: 2rem;
+    width: 20rem;
+    border-radius: 10px;
+    border-color: transparent;
+    outline: none;
+}
+.myInput:focus{
+    box-shadow: rgba(14, 30, 37, 0.5) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    transition: 0.5s;
+}
+.inputDiv{
+    margin-bottom: 8%;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    
+}
+h1{
+    font-family: 'Ubuntu', sans-serif;
+    display: flex;
+    justify-content: center ;
+    color: white;
+    font-size: 120px;
+    margin-left: 5rem;
+}
+.myLabel{
+    margin-top: 0.5rem;
+    font-size: larger;
+    /* font-family: 'Noto Sans KR', sans-serif; */
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 600;
+}
+.formDiv{
+    padding: 10px;
+    width: 100%;
+    height: 500px;
+
+    padding: 15rem 30px 30px 30px;    
+    border-radius: 5%;
+}
+.registerBtn{
+    font-size: larger;
+    width: 15rem;
+    height: 2.5rem;
+    border-radius: 20px;
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 25%;
+    border-color: transparent;
+    box-shadow: 0 5px rgb(106, 106, 224);
+}
+.registerBtn:hover{
+    background-color: lightblue;
+    transition: 0.5s;
+}
+.registerBtn:active{
+     box-shadow: 0 2px rgb(106, 106, 224);
+    transform: translate(0,5px); 
+    transition: 0.1s;
+}
+#grad {
+    background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+  }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/mainPage.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("partials/_navbar"); %>
+    <div class="profileContainer">
+
+        <div class="profileDetails">
+            <% if(photo.img) {%>
+            <img src="data:image/<%= photo.img.contentType%>;base64,
+            <%=photo.img.data.toString('base64')%>" alt="asdasad" id="profilePic">
+            <%}else{%>
+                <div>photo</div>
+                <%}%>
+            <h1 class="userName"><%= item.name %></h1>
+            <h3 class="userPhone"><%= item.phone %></h3>
+        </div>
+        <div class="box">
+
+            <div class="about">
+                <h3>About</h3>
+                <p>This part is for information about user</p>
+                <p>THIS PART WILL CONTAIN INFORMATION ABOUT YOUR LIFE</p>
+                <p>FOR EXAMPLE YOUR BIRTHDAY YOUR CREDIT CARD NUMBER AND ETC</p>
+                <p>WE WILL STEAL YOUR HAPPINESS</p>
+            </div>
+            <div class="container">
+                <div class="usersContent">
+                    <div class="usersPosts">
+                        <% posts.forEach(function(image) { %>
+        
+                            <div class="profileCard d-flex">
+                              <div class="profileuserndesc">
+                                <p><b><%= item.name %></b></p>
+                                <p id="description"><%= image.desc %></p>
+                              </div>
+                              <div class="postimagebtn">
+                                <img id="postimage" src="data:image/<%=image.img.contentType%>;base64,
+                                <%=image.img.data.toString('base64')%>" alt="">
+                                  <a href="/delete/<%= image._id%>?_method=DELETE" class="btn btn-danger" >Delete</a>
+                  
+                              </div>
+                            </div>
+                            <% }) %>
+                    </div>
+        
+                </div>
+    
+            </div>
+        </div>
+    </div>
+</body>
+</html>

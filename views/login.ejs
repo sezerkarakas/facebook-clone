@@ -1,0 +1,48 @@
+<%- include("partials/_header"); %>
+
+
+<body>
+    <%- include("partials/_navbar"); %>
+    <div class="container">
+        <div class="row">
+            <div style="border-radius: 50px;" class="d-flex justify-content-center align-items-center mt-5 pt-3 pb-3 " >
+                <form id="loginForm" action="/login" method="POST">
+                    
+                    <div>
+                        <div>
+                            <label for="email">Email:</label>
+                            <input id="email" type="text" name="email" id="email" >
+                        </div>
+                        <div>
+                            <label for="password">Password:</label>
+                            <input type="text" name="password" id="password" >
+                        </div>
+
+                    </div>
+                    <button style="border-radius: 20px;" class="btn btn-info mt-2" type="submit" id="submitButton">Register</button>
+            
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+
+	<script>
+            const socket = io();
+            
+
+            document.getElementById("submitButton").addEventListener("click",function(){
+                const email = document.getElementById("email").value;
+                
+                
+                socket.emit("userinfo", {email: email})
+            })
+
+
+    </script>
+            <%- include("partials/_footer"); %>
+        
+                
+        
+
+            
