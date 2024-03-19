@@ -19,15 +19,9 @@ router.get("/", pageController.mainPage);
 router.post("/login", userController.login);
 router.post("/register", userController.createAccount);
 router.get("/logout", userController.logout);
-router.get("/login", userController.renderLogin);
-router.get("/register", userController.renderRegister);
-router.get("/message", (req, res) => {
-  res.render("messages");
-});
+router.get("/user/verify/:id/:token", userController.verifyAccount);
 router.get("/profile", userController.getProfile);
 router.get("/getAll", userController.getAllUsers);
-router.get("/image", pageController.getImages);
 router.post("/", pageController.uploadImage);
-router.delete("/delete/:id", pageController.deleteImage);
 
 module.exports = router;

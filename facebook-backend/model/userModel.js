@@ -7,13 +7,11 @@ const userSchema = new Schema({
   name: String,
   phone: String,
   password: String,
-  profilePic: {
-    data: Buffer,
-    contentType: String,
-  }
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
-
-
 
 userSchema.pre("save", function (next) {
   const user = this;
@@ -23,5 +21,5 @@ userSchema.pre("save", function (next) {
   });
 });
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("user", userSchema);
 module.exports = User;

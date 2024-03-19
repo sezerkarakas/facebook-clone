@@ -3,16 +3,11 @@ const app = express();
 const { Server } = require("socket.io");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const fs = require("fs");
-
-const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 require("dotenv").config();
 const userRoutes = require("./routes/userRoutes");
 const mongoose = require("mongoose");
-const Image = require("./model/model");
-const Message = require("./model/message");
 const methodOverride = require("method-override");
 const cache = require("memory-cache");
 const User = require("./model/userModel");
