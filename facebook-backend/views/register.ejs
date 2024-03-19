@@ -1,0 +1,33 @@
+<%- include("partials/_header"); %>
+
+<body>
+    <%- include("partials/_navbar"); %>
+    <div id="registerBody">
+
+    </div>
+    <h1 class="registerHead" style="margin-bottom: 50px; font-size: 150px;">Join Us</h1>
+    <div id="register" class="container d-flex justify-content-center align-items-center mt-5 rounded py-5 ">
+        <form id="square" action="/register" method="POST">
+            <div class="mt-2 d-flex justify-content-between">
+                <label class="me-2 registerLabel" for="email">Email:</label>
+                <input class="rounded-pill border-success registerInput" type="text" name="email" id="email" >
+            </div>
+            <div class="mt-2 d-flex justify-content-between">
+                <label class="me-2 registerLabel" for="name">Name:</label>
+                <input class="rounded-pill border-success registerInput"  type="text" name="name" id="name" >
+            </div>
+            <div class="mt-2 d-flex justify-content-between">
+                <label class="me-2 registerLabel" for="phone">Phone:</label>
+                <input class="rounded-pill border-success registerInput" type="text" name="phone" id="phone" >
+            </div>
+            <div class="mt-2 d-flex justify-content-between">
+                <label class="me-2 registerLabel" for="password">Password:</label>
+                <input class="rounded-pill border-success registerInput" type="text" name="password" id="password" >
+            </div>
+            <button style="width: 500px; color: white; background-color: #750099;" class="btn mt-3 border-success rounded-pill registerButton" type="submit">Register</button>
+            
+        </form>
+        
+    </div>
+	
+    <%- include("partials/_footer"); %>

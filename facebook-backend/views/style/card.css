@@ -1,0 +1,21 @@
+.card {
+  height: 20rem;
+  width: 16rem;
+  background-color: orange;
+  box-shadow: 3px 3px 5px navy;
+  border-radius: 2rem;
+  font-size: 4rem;
+}
+.card:hover {
+  box-shadow: 3px 3px 10px navy;
+  transition: 0.5s;
+  transform: scale(1.5) rotateY(180deg);
+  
+    }
+.container{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+}

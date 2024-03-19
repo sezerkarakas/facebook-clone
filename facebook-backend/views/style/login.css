@@ -1,0 +1,81 @@
+.image_container{
+    background-color: blue;
+    color: blue ;
+}
+.upload{
+    background-color: blue;
+}
+.imgSize{
+    height: 400px;
+    width: 300px;
+}
+#register{
+    border-radius: 50px;
+
+}
+#square{
+    border-radius: 10%;
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 4%;
+    z-index: 2;
+    
+}
+.registerHead{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 24%;
+    left: 50%;
+    color: white;
+}
+
+#registerBody{
+    background-image: url("https://images.unsplash.com/photo-1618588507085-c79565432917?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww&w=1000&q=80");
+
+    /* Add the blur effect */
+    filter: blur(100px);
+    -webkit-filter: blur(100px);
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body, html{
+    height: 100%;
+}
+
+.border-success {
+    --bs-border-opacity: 0;
+    border-color: rgba(var(--bs-success-rgb), var(--bs-border-opacity)) !important;
+  }
+
+.registerInput{
+    outline: none;
+    width: 370px;
+    height: 40px;
+}
+.registerInput:hover{
+    transition: 0.2s;
+    box-shadow: 5px 0 5px #750099;
+}
+.registerLabel{
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: large;
+}
+.registerButton{
+    height: 60px;
+    font-size: 25px;
+}
+.registerButton:hover{
+    transition: 0.2s;
+    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+}

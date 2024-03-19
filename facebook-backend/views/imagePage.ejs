@@ -1,0 +1,85 @@
+<%- include("partials/_header"); %>
+
+<body>
+  <%- include("partials/_navbar"); %>
+  <h1 class="d-flex align-items-center justify-content-center">
+    To Upload Image on mongoDB
+  </h1>
+  <hr />
+  <div class="container">
+    <form
+      class="d-flex flex-column justify-content-start align-items-start"
+      action="/"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <div
+        class="d-flex flex-column justify-content-start align-items-start col-6"
+      >
+        <div>
+          <label for="name">Image Title</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Name"
+            value=""
+            name="name"
+            required
+          />
+        </div>
+        <div>
+          <label for="desc">Image Description</label>
+          <textarea
+            id="desc"
+            name="desc"
+            value=""
+            rows="2"
+            placeholder="Description"
+            required
+          >
+          </textarea>
+        </div>
+        <div>
+          <label for="image">Upload Image</label>
+          <input type="file" id="image" name="image" value="" required />
+        </div>
+      </div>
+      <div class="col-6">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  <hr />
+
+  <h1 class="d-flex justify-content-center align-items-center">
+    Uploaded Images
+  </h1>
+  <div class="d-flex flex-row container justify-content-evenly">
+    <div class="container">
+      <% items.forEach(function(image) { %>
+      <div class="d-flex justify-content-center align-items-center col-sm-3">
+        <div>
+          <img
+            class="imgSize"
+            src="data:image/<%=image.img.contentType%>;base64,
+							<%=image.img.data.toString('base64')%>"
+          />
+          <div>
+            <h5><%= image.name %></h5>
+
+            <p><%= image.desc %></p>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+    const socket = io();
+
+    socket.emit("imagepage", "imagepage-helloworld");
+  </script>
+  <%- include("partials/_footer"); %>
+</body>

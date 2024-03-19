@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Ruda:wght@400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+body{
+  font-family: 'Roboto', sans-serif;
+}
+.messageDiv {
+  background-color: lime;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -46.5%);
+  height: 95%;
+  width: 100%;
+  display: flex;
+}
+.contacts {
+    background-color: rgb(117, 121, 121);
+    height: 100%;
+    width: 25%;
+}
+.contact {
+  background-color: rgb(117, 121, 121);
+  height: 10%;
+  display: flex;
+  padding-left: 1rem;
+  justify-content: start;
+}
+.contact:hover {
+  background-color: rgb(185, 192, 192);
+}
+.contactPhoto {
+  width: 20%;
+  margin-right: 1rem;
+}
+.contactName {
+  font-family: "Ubuntu", sans-serif;
+  color: white;
+  font-size: large;
+}
+.messages {
+  background-color: lightblue;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.allMessages {
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+}
+.messageBox {
+  display: flex;
+  height: 5%;
+  width: 100%;
+}
+.messageInput {
+  width: 95%;
+  border-radius: 50px;
+}
+.messageBtn {
+  width: 5%;
+  border-radius: 100px;
+}
+.messageContainer {
+  background-color: rgb(255, 246, 246);
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: center;
+  padding-bottom: 10%;
+  width: 250px;
+  border-radius: 10px;
+  padding-left: 10px;
+  margin-bottom: 2px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+#targetUser {
+  border-radius: 20px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+#targetUser::placeholder {
+  color: rgb(53, 49, 49);
+  padding-left: 10px;
+}
+
+#newMessage{
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 4vh;
+  min-height: 6vh;
+  max-height: 10vh;
+  padding-top: 5px;
+}

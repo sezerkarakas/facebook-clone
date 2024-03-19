@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
+body {
+  background-image: linear-gradient(to right, #a1b 10%, #a1d 20%, #a2f 40%);
+}
+#myContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(0, 40%);
+}
+#square {
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50vh;
+  
+  height: 50vh;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px #ff1;
+  font-family: "Ubuntu", sans-serif;
+}
+input{
+    border-radius: 12px;
+    height: 1.5rem;
+    width: 15rem;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    border-color: transparent;
+    box-shadow: -1px 1px 5px 0 #a1d;
+    outline: transparent;
+}
+input:focus{
+    box-shadow: -1px 1px 5px 0 rgb(219, 205, 0);
+}
+label{
+    margin-top: 5px;
+}
+.loginBox{
+    display: flex;
+    justify-content: space-between;
+}
+#loginButton{
+    border-radius: 12px;
+    width: 15rem;
+    height: 2rem;
+    margin-left: 50px;
+    margin-top: 20px;
+    background-color: #ffa1ff;
+    border: none;
+}
+#loginButton:hover{
+    background-color: rgb(255, 255, 0);
+    transition: 0.3s;
+    box-shadow: 5px 5px 5px 0 #ffa1ff;
+}
+#loginButton:active{
+    transform: translate(0,5px);
+    transition: 0.3s;
+}
+
+h1{
+
+    margin-bottom: 50px;
+    font-size: 50px;
+}

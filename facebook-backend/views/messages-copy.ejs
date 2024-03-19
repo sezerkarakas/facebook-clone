@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style/message.css" />
+  </head>
+  <body>
+  
+    <div class="messageDiv">
+      <div class="contacts">
+        <a href="">
+          <div class="contact">
+            <img
+              src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+              alt=""
+              class="contactPhoto"
+            />
+            <h3 class="contactName">Henry Green</h3>
+          </div>
+        </a>
+
+        <div class="contact">
+          <img
+            src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+            alt=""
+            class="contactPhoto"
+          />
+          <h3 class="contactName">Jacob Frye</h3>
+        </div>
+
+        <div class="contact">
+          <img
+            src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+            alt=""
+            class="contactPhoto"
+          />
+          <h3 class="contactName">Evie Frye</h3>
+        </div>
+      </div>
+      <div class="messages">
+        <div class="allMessages">
+          <ul id="messages"></ul>
+        </div>
+        <form id="form" class="messageBox" action="">
+          <input
+            id="targetUser"
+            name="targetUser"
+            type="email"
+            placeholder="Contact Email"
+          />
+          <input
+            id="input"
+            class="messageInput"
+            type="text"
+            placeholder="Please enter your message"
+          />
+          <button class="messageBtn" onclick="mesajGonder()">send</button>
+        </form>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io("http://localhost:3000");
+
+      function mesajGonder(e) {
+        e.preventDefault();
+        const message = document.getElementById("input").value;
+        const targetUserEmail = document.getElementById("targetUser").value;
+        console.log(message);
+        socket.emit("send-private-message", { targetUserEmail, message });
+      }
+
+      socket.on("receive-private-message", (data) => {
+        const messageUl = document.getElementById("messages");
+        const messageHeader = document.createElement("h4");
+        messageHeader.textContent = `${data.sender}`;
+        const messageLi = document.createElement("li");
+        const messageContainer = document.createElement("div");
+        messageContainer.classList = "messageContainer";
+        messageLi.classList = "messageLi";
+        messageLi.textContent = `${data.message}`;
+        messageUl.appendChild(messageContainer);
+        messageContainer.appendChild(messageHeader);
+        messageContainer.appendChild(messageLi);
+      });
+
+      socket.on("private-message-sent", (data) => {
+        const messageUl = document.getElementById("messages");
+        const messageLi = document.createElement("li");
+        messageLi.classList = "messageLi";
+        messageLi.textContent = `${data.message}`;
+        messageUl.appendChild(messageLi);
+      });
+
+      socket.on("hata", (mesaj) => {
+        alert(mesaj);
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
