@@ -1,13 +1,20 @@
 import { useState } from "react";
 import "../index.css";
 import { Link, useNavigate } from "react-router-dom";
+import Modal from "react-modal";
 import axios from "axios";
+import RegisterPage from "./RegisterPage";
 
 const LoginPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [loginCredentials, setLoginCredentials] = useState({
     email: "",
     password: "",
   });
+
+  const handleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   const navigate = useNavigate();
 
@@ -82,10 +89,20 @@ const LoginPage = () => {
           </Link>
           <div className="w-11/12 border-b border-gray-300"></div>
         </form>
-        <button className="w-6/12 h-1/6  bg-lime-600 rounded-md font-bold text-xl flex justify-center items-center">
+        <button
+          className="w-6/12 h-1/6  bg-lime-600 rounded-md font-bold text-xl flex justify-center items-center"
+          onClick={handleModal}
+        >
           Yeni Hesap Oluştur
         </button>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={handleModal}
+        className="bg-transparent"
+      >
+        <RegisterPage isModalOpen={isModalOpen} handleModal={handleModal} />
+      </Modal>
     </div>
   );
 };

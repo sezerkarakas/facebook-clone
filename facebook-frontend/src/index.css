@@ -30,7 +30,7 @@
 }
 
 .login-input {
-  @apply w-11/12 h-1/6 rounded-md shadow-inner shadow-gray-50 border-2 border-gray-300;
+  @apply w-11/12 h-1/6 rounded-md shadow-inner shadow-gray-50 border-2 border-gray-300 pl-2;
 }
 
 .full-screen-center {

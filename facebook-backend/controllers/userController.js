@@ -58,8 +58,11 @@ const sendVerificationEmail = async (email, subject, text) => {
 const createAccount = async (req, res) => {
   const email = req.body.email;
   const name = req.body.name;
-  const phone = req.body.phone;
+  const surname = req.body.surname;
   const password = req.body.password;
+  const dateOfBirth = req.body.dateOfBirth;
+  const gender = req.body.gender;
+
   const validatedEmail = validateEmail(email);
   console.log(validatedEmail);
   const validatedPassword = validatePassword(password);
@@ -69,8 +72,10 @@ const createAccount = async (req, res) => {
       const user = await User.create({
         email: email,
         name: name,
-        phone: phone,
+        surname: surname,
         password: password,
+        dateOfBirth: dateOfBirth,
+        gender: gender,
         isVerified: false,
       });
 

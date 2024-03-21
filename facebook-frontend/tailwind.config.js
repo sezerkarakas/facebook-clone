@@ -17,6 +17,9 @@ export default {
         "190":"47.5rem",
         "200":"50rem",
       },
+      colors:{
+        "special-green":"#00a400",
+      },
     },
   },
   plugins: [],
