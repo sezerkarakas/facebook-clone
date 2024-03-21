@@ -25,13 +25,16 @@
   @apply hover:bg-neutral-700 py-3 px-10 rounded-md;
 }
 
-
-.mid-navbar-active{
+.mid-navbar-active {
   @apply rounded-none border-b-2 border-blue-600 text-blue-600 hover:bg-inherit;
 }
 
-.login-input{
+.login-input {
   @apply w-11/12 h-1/6 rounded-md shadow-inner shadow-gray-50 border-2 border-gray-300;
+}
+
+.full-screen-center {
+  @apply flex flex-row justify-center items-center h-dvh w-screen;
 }
 
 /* 

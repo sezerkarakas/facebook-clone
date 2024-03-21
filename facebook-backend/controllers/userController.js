@@ -2,10 +2,7 @@ const User = require("../model/userModel");
 const Image = require("../model/model");
 const bcrypt = require("bcrypt");
 const cache = require("memory-cache");
-const multer = require("multer");
-const fs = require("fs");
 const crypto = require("crypto");
-const path = require("path");
 const nodemailer = require("nodemailer");
 const Token = require("../model/token");
 
@@ -116,6 +113,7 @@ const login = async (req, res) => {
   const password = req.body.password;
   try {
     const user = await User.findOne({ email: email });
+    if (!user) return res.status(400).send("User not found");
     if (user.isVerified === false)
       return res.status(400).send("Please verify your account");
     if (user) {

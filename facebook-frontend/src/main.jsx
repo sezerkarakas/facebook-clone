@@ -8,6 +8,7 @@ import Marketplace from "./Pages/Marketplace.jsx";
 import Groups from "./Pages/Groups.jsx";
 import Gaming from "./Pages/Gaming.jsx";
 import LoginPage from "./Pages/LoginPage.jsx";
+import RegisterPage from "./Pages/RegisterPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+    errorElement: <div>404 Not Found</div>,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
     errorElement: <div>404 Not Found</div>,
   },
 ]);
