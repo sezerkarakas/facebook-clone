@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 const RegisterPage = ({ handleModal }) => {
   const [registerCredentials, setRegisterCredentials] = useState({
@@ -99,7 +100,7 @@ const RegisterPage = ({ handleModal }) => {
             <input
               type="date"
               name="dateOfBirth"
-              className="rounded-md h-4/6 border-neutral-300 bg-neutral-100 border"
+              className="rounded-md h-4/6 border-neutral-300 bg-neutral-100 border pl-2"
               value={registerCredentials.dateOfBirth}
               onChange={(e) =>
                 setRegisterCredentials({
@@ -162,6 +163,10 @@ const RegisterPage = ({ handleModal }) => {
       </div>
     </div>
   );
+};
+
+RegisterPage.propTypes = {
+  handleModal: PropTypes.func.isRequired,
 };
 
 export default RegisterPage;

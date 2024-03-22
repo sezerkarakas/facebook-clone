@@ -8,17 +8,10 @@ export default {
         20: "20px",
       },
       width: {
-        "128":"32rem",
-        "140":"35rem",
-        "150":"37.5rem",
-        "160":"40rem",
-        "170":"42.5rem",
-        "180":"45rem",
-        "190":"47.5rem",
-        "200":"50rem",
+        "3/10": "30%",
       },
-      colors:{
-        "special-green":"#00a400",
+      colors: {
+        "special-green": "#00a400",
       },
     },
   },

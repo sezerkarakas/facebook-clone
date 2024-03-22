@@ -2,7 +2,7 @@ import Account from "../Account/Account";
 
 const PostCard = ({ photo }) => {
   return (
-    <div className="container h-full flex flex-col  bg-zinc-800 mb-10 rounded-md ">
+    <div className="container h-fit flex flex-col  bg-zinc-800 mb-10 rounded-md ">
       <div className="pb-5 pt-2 pl-2">
         <div className="flex flex-row justify-start items-start gap-2 ">
           <Account />

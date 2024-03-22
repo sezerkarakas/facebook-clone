@@ -4,12 +4,10 @@ import NavbarRight from "../navbarComponents/NavbarRight/NavbarRight";
 
 const Navbar = () => {
   return (
-    <nav>
-      <div className="main-navbar">
+    <nav className="main-navbar">
         <NavbarLeft />
         <NavbarMid />
         <NavbarRight />
-      </div>
     </nav>
   );
 };

@@ -20,9 +20,9 @@ const Homepage = () => {
     fetchData();
   }, []);
   return (
-    <div>
-      <div className="container mx-auto flex justify-center flex-col items-center w-8/12">
-        <form className="container my-4 flex justify-center items-center w-6/12 h-32 bg-zinc-800 rounded-md flex-col">
+    <div className="w-screen flex flex-row">
+      <div className="container mx-auto flex  justify-center flex-col items-center w-full">
+        <form className="container  my-4 flex justify-center items-center w-7/12 h-32 bg-zinc-800 rounded-md flex-col">
           <div className="flex justify-evenly items-center w-full mb-3">
             <Account />
             <input
@@ -40,7 +40,7 @@ const Homepage = () => {
             </div>
           </div>
         </form>
-        <div className="w-6/12">
+        <div className="w-7/12">
           {data &&
             data.map((item, idx) => {
               return <PostCard key={idx} photo={item} />;
